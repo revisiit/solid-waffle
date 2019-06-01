@@ -2,6 +2,7 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -29,6 +30,12 @@ module.exports = {
       {
         test: /.css$/,
         use: [
+          // {
+          //   loader: MiniCssExtractPlugin.loader,
+          //   options: {
+          //     hmr: true,
+          //   },
+          // },
           'style-loader',
           {
             loader: 'css-loader',
@@ -54,6 +61,10 @@ module.exports = {
       title: 'visiit',
       template: './src/index.html',
     }),
+    // new MiniCssExtractPlugin({
+    //   filename: '[name].css',
+    //   chunkFilename: '[id].css',
+    // }),
     new webpack.HotModuleReplacementPlugin(),
   ],
 
