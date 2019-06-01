@@ -2,8 +2,9 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
+const BuildNotifPlugin = require('webpack-build-notifier');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
@@ -11,7 +12,7 @@ module.exports = {
   entry: path.resolve(__dirname, 'src', 'index.js'),
 
   output: {
-    filename: 'app.js',
+    filename: 'app.[hash].js',
     path: path.resolve(__dirname, 'build'),
   },
 
@@ -49,8 +50,14 @@ module.exports = {
       },
 
       {
-        test: /.(png|svg|jpg)$/,
-        use: 'file-loader',
+        test: /.(png|svg|jpe?g|gif)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            outputPath: 'assets',
+            name: '[name].[ext]',
+          },
+        },
       },
     ],
   },
@@ -66,9 +73,26 @@ module.exports = {
     //   chunkFilename: '[id].css',
     // }),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
+    new BuildNotifPlugin({
+      title: 'ReVisiit Webpack Build',
+    }),
   ],
 
   devtool: 'inline-source-map',
+
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          name: 'vendors',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]/,
+        },
+      },
+    },
+  },
 
   devServer: {
     contentBase: path.join(__dirname, 'build'),
