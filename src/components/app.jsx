@@ -9,7 +9,7 @@ class App extends Component {
       <div className={styles.hello}>
         Hello World.
         <p className={styles.bold}>ReVisiit</p>
-        sdfadsf ads fdfadf
+        Handing over to Aravind.
         <Logo />
       </div>
     )
