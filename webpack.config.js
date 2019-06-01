@@ -1,5 +1,9 @@
 const path = require('path');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
+
 module.exports = {
   mode: 'development',
 
@@ -30,7 +34,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[path][name]__[local]',
+              localIdentName: '[name]__[local]',
               camelCase: true,
             },
           },
@@ -42,5 +46,23 @@ module.exports = {
         use: 'file-loader',
       },
     ],
+  },
+
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'visiit',
+      template: './src/index.html',
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+
+  devtool: 'inline-source-map',
+
+  devServer: {
+    contentBase: path.join(__dirname, 'build'),
+    compress: true,
+    port: 5000,
+    hot: true,
   },
 };
