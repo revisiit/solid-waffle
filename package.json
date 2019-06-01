@@ -1,0 +1,33 @@
+{
+  "name": "solid-waffle",
+  "version": "0.0.1",
+  "description": "Frontend for ReVisiit",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/revisiit/solid-waffle.git"
+  },
+  "author": "digi0ps",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/revisiit/solid-waffle/issues"
+  },
+  "homepage": "https://github.com/revisiit/solid-waffle#readme",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.5.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
+  },
+  "dependencies": {
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
