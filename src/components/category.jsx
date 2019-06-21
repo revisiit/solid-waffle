@@ -28,6 +28,13 @@ class Fetch extends React.Component {
         </div>
       )
     }
+    if (this.state.error) {
+      retur(
+        <div>
+          <p>something wrong!!!!!</p>
+        </div>,
+      )
+    }
 
     return (
       <div>

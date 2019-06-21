@@ -1,6 +1,7 @@
 import React from 'react'
 import Loader from '../images/loader.svg'
 import Image from '../images/logo-visit.png'
+import Category from './category'
 
 class Fetch extends React.Component {
   constructor() {
@@ -13,7 +14,7 @@ class Fetch extends React.Component {
   }
 
   componentWillMount() {
-    fetch('http://127.0.0.1:3000/api/v1/package/all')
+    fetch('http://127.0.0.1:3000/api/v1/package')
       .then(res => res.json())
       .then(output => {
         this.setState({ data: output, isloading: false })
@@ -31,7 +32,13 @@ class Fetch extends React.Component {
         </div>
       )
     }
-
+    if (this.state.error) {
+      return (
+        <div>
+          <p>something wrong!!!!!</p>
+        </div>
+      )
+    }
     return (
       <div>
         {this.state.data.map(item => (
@@ -45,6 +52,7 @@ class Fetch extends React.Component {
           <p>bravo </p>
           <img src={Image} />
         </div>
+        <Category />
       </div>
     )
   }
