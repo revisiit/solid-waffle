@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Logo from './Logo'
+import Home from './home'
+import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import styles from './app.css'
-import Fetch from './fetch'
 
 class App extends Component {
   render() {
@@ -11,7 +12,6 @@ class App extends Component {
         Hello World.
         <p className={styles.bold}>ReVisiit</p>
         Handing over to Aravind.
-        <Fetch />
       </div>
     )
   }

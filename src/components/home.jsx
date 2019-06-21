@@ -8,16 +8,18 @@ class Fetch extends React.Component {
     this.state = {
       data: [],
       isloading: true,
+      error: null,
     }
   }
 
   componentWillMount() {
-    fetch('http://127.0.0.1:3000/api/v1/category/all')
+    fetch('http://127.0.0.1:3000/api/v1/package/all')
       .then(res => res.json())
       .then(output => {
         this.setState({ data: output, isloading: false })
         console.log(output)
       })
+      .catch(error => this.setState({ error, isloading: false }))
   }
 
   render() {
@@ -33,7 +35,11 @@ class Fetch extends React.Component {
     return (
       <div>
         {this.state.data.map(item => (
-          <h4 key={item.key}>{item._id}</h4>
+          <div key={item._id}>
+            {' '}
+            <h4>{item.name}</h4>
+            <h3>{item.description}</h3>
+          </div>
         ))}
         <div>
           <p>bravo </p>
