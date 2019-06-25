@@ -1,7 +1,9 @@
 import React from 'react'
 import Loader from '../images/loader.svg'
 import Image from '../images/logo-visit.png'
-import Category from './category'
+// import Category from './category'
+import Package from './package'
+import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 class Fetch extends React.Component {
   constructor() {
@@ -14,7 +16,7 @@ class Fetch extends React.Component {
   }
 
   componentWillMount() {
-    fetch('http://127.0.0.1:3000/api/v1/package')
+    fetch('http://127.0.0.1:3000/api/v1/package/all')
       .then(res => res.json())
       .then(output => {
         this.setState({ data: output, isloading: false })
@@ -44,7 +46,9 @@ class Fetch extends React.Component {
         {this.state.data.map(item => (
           <div key={item._id}>
             {' '}
-            <h4>{item.name}</h4>
+            <h2>
+              <Link to={`/package/${item._id}`}>{item.name}</Link>
+            </h2>
             <h3>{item.description}</h3>
           </div>
         ))}
@@ -52,7 +56,7 @@ class Fetch extends React.Component {
           <p>bravo </p>
           <img src={Image} />
         </div>
-        <Category />
+        {/* <Category /> */}
       </div>
     )
   }
