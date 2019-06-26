@@ -12,7 +12,7 @@ class Routing extends React.Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/package/:id/" component={Package} />
-            <Route path="/category" component={Category} />
+            <Route path="/category/:id/" component={Category} />
             {/* <Route component={Nf} /> */}
           </Switch>
         </div>
