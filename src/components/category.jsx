@@ -1,11 +1,12 @@
 import React from 'react'
-import Loader from '../images/loader.svg'
+import Loader from './loader'
+import Error from './error'
 
 class Fetch extends React.Component {
   constructor() {
     super()
     this.state = {
-      ctg: [],
+      category: [],
       isloading: true,
     }
   }
@@ -15,7 +16,7 @@ class Fetch extends React.Component {
     fetch(`http://127.0.0.1:3000/api/v1/category/${id}`)
       .then(res => res.json())
       .then(output => {
-        this.setState({ ctg: output, isloading: false })
+        this.setState({ category: output, isloading: false })
         console.log(output)
       })
   }
@@ -24,23 +25,21 @@ class Fetch extends React.Component {
     if (this.state.isloading) {
       return (
         <div>
-          <p>loading....</p>
-          <img src={Loader} />
+          <Loader />
         </div>
       )
     }
     if (this.state.error) {
       retur(
         <div>
-          <p>something wrong!!!!!</p>
+          <Error />
         </div>,
       )
     }
-    const { ctg } = this.state
+    const { category } = this.state
     return (
       <div>
-        <h2>{ctg._id}</h2>
-        <h3>{ctg.name}</h3>
+        <h3>{category.name}</h3>
       </div>
     )
   }
