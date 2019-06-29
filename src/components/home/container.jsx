@@ -17,9 +17,9 @@ class Fetch extends React.Component {
 
   componentDidMount() {
     getAllPackage()
-      .then(pkg_output => {
-        this.setState({ pkg: pkg_output, isloading: false })
-        console.log(pkg_output)
+      .then(packagese => {
+        this.setState({ pkg: packagese, isloading: false })
+        console.log(packagese)
       })
       .catch(error => this.setState({ error, isloading: false }))
 
