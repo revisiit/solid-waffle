@@ -1,10 +1,7 @@
 import React from 'react'
 import Loader from '../common/loader'
-import Image from '../images/logo-visit.png'
-import Category from '../category_id'
-import Package from '../package_id/'
-import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import Error from '../common/error'
+import { Link } from 'react-router-dom'
+import ErrorComponent from '../common/error'
 
 class Fetch extends React.Component {
   constructor() {
@@ -40,7 +37,7 @@ class Fetch extends React.Component {
       return <Loader />
     }
     if (this.state.error) {
-      return <Error />
+      return <ErrorComponent />
     }
     const { pkg } = this.state
     const { category } = this.state
@@ -50,7 +47,7 @@ class Fetch extends React.Component {
           <div key={pkg_item._id}>
             {' '}
             <h2>
-              <Link to={`/package_id/${pkg_item._id}`}>{pkg_item.name}</Link>
+              <Link to={`/package/${pkg_item._id}`}>{pkg_item.name}</Link>
             </h2>
             <h3>{pkg_item.description}</h3>
           </div>
@@ -59,7 +56,7 @@ class Fetch extends React.Component {
           <div key={category_item._id}>
             {' '}
             <h2>
-              <Link to={`/category_id/${category_item._id}`}>
+              <Link to={`/category/${category_item._id}`}>
                 {category_item.name}
               </Link>
             </h2>
