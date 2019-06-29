@@ -14,7 +14,7 @@ class Fetch extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetch('http://127.0.0.1:3000/api/v1/package/all')
       .then(res => res.json())
       .then(pkg_output => {
