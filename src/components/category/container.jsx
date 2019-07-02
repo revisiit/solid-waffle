@@ -1,6 +1,7 @@
 import React from 'react'
 import Loader from '../common/loader'
 import Error from '../common/error'
+import { getCategoryId } from '../common/api'
 
 class Category extends React.Component {
   constructor() {
@@ -13,12 +14,10 @@ class Category extends React.Component {
 
   componentWillMount() {
     const id = this.props.match.params.id
-    fetch(`http://127.0.0.1:3000/api/v1/category/${id}`)
-      .then(res => res.json())
-      .then(output => {
-        this.setState({ category: output, isloading: false })
-        console.log(output)
-      })
+    getCategoryId(id).then(output => {
+      this.setState({ category: output, isloading: false })
+      console.log(output)
+    })
   }
 
   render() {
