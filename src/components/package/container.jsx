@@ -1,7 +1,7 @@
 import React from 'react'
 import Loader from '../common/loader'
 import Error from '../common/error'
-import { getPackageId } from '../common/api'
+import { getPackageId } from '../../helpers/api'
 class Package extends React.Component {
   constructor(props) {
     super(props)
