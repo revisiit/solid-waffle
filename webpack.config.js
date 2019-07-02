@@ -1,9 +1,9 @@
-const path = require('path');
+const path = require('path')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack');
-const BuildNotifPlugin = require('webpack-build-notifier');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const webpack = require('webpack')
+const BuildNotifPlugin = require('webpack-build-notifier')
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -14,6 +14,7 @@ module.exports = {
   output: {
     filename: 'app.[hash].js',
     path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
   },
 
   resolve: {
@@ -99,5 +100,6 @@ module.exports = {
     compress: true,
     port: 5000,
     hot: true,
+    historyApiFallback: true,
   },
-};
+}
