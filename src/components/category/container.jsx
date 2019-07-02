@@ -1,7 +1,7 @@
 import React from 'react'
 import Loader from '../common/loader'
 import Error from '../common/error'
-import { getCategoryId } from '../common/api'
+import { getCategoryId } from '../../helpers/api'
 
 class Category extends React.Component {
   constructor() {
