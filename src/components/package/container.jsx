@@ -1,7 +1,7 @@
 import React from 'react'
 import Loader from '../common/loader'
 import Error from '../common/error'
-
+import { getPackageId } from '../common/api'
 class Package extends React.Component {
   constructor(props) {
     super(props)
@@ -15,8 +15,7 @@ class Package extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id
 
-    fetch(`http://127.0.0.1:3000/api/v1/package/${id}`)
-      .then(res => res.json())
+    getPackageId(id)
       .then(output => {
         this.setState({ pkg: output, isloading: false })
         console.log(output)

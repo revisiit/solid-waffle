@@ -2,6 +2,8 @@ import React from 'react'
 import Loader from '../common/loader'
 import { Link } from 'react-router-dom'
 import ErrorComponent from '../common/error'
+import { getPackage } from '../common/api'
+import { getCategory } from '../common/api'
 
 class Fetch extends React.Component {
   constructor() {
@@ -15,16 +17,14 @@ class Fetch extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://127.0.0.1:3000/api/v1/package/all')
-      .then(res => res.json())
+    getPackage()
       .then(pkg_output => {
         this.setState({ pkg: pkg_output, isloading: false })
         console.log(pkg_output)
       })
       .catch(error => this.setState({ error, isloading: false }))
 
-    fetch('http://127.0.0.1:3000/api/v1/category/all')
-      .then(res => res.json())
+    getCategory()
       .then(category_output => {
         this.setState({ category: category_output, isloading: false })
         console.log(category_output)
