@@ -3,7 +3,6 @@ import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './home'
 import Package from './package'
 import Category from './category'
-// import Postform from './login'
 
 class Routing extends React.Component {
   render() {

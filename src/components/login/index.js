@@ -1,3 +1,3 @@
-import Postform from './postform'
+import SignUp from './signup'
 
-export default Postform
+export default SignUp

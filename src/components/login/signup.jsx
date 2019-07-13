@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Home from '../home'
 
 class Postform extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      first_name: 'akkkkkk',
-      last_name: 'sdfsdfsd',
-      email: 'aksucks@gmail.com',
-      phone: '9876543210',
-      password: 'akakakakak',
+      first_name: 'aravind',
+      last_name: 'krishnan',
+      email: 'abcde@gmail.com',
+      phone: '987654321',
+      password: 'hbdfufenifnernfin',
     }
   }
 
@@ -32,12 +33,18 @@ class Postform extends Component {
       method: 'POST',
       url: 'http://localhost:3000/api/v1/user',
       data: user,
+    }).then(res => {
+      const output = res.data.success
+      // console.log(output)
+
+      if ((status = 200 && response.data && output == true)) {
+        console.log('reg success')
+      } else {
+        console.log('faile')
+      }
     })
-    //   const { status, data } = response
-    //   if (status == 200 && data && data.success) {
-    //     console.log('Reg suc')
-    //   }
-    // }
+
+    // console.log(response.body)
   }
   render() {
     const { first_name, last_name, email, password, phone } = this.state
