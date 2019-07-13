@@ -37,7 +37,7 @@ class Postform extends Component {
       const output = res.data.success
       // console.log(output)
 
-      if ((status = 200 && response.data && output == true)) {
+      if ((status = 200 && output == true)) {
         console.log('reg success')
       } else {
         console.log('faile')
