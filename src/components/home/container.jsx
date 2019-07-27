@@ -3,7 +3,6 @@ import Loader from '../common/loader'
 import { Link } from 'react-router-dom'
 import ErrorComponent from '../common/error'
 import { getAllPackage, getAllCategory } from '../../helpers/api'
-import Postform from '../login'
 
 class Fetch extends React.Component {
   constructor() {
@@ -62,8 +61,6 @@ class Fetch extends React.Component {
             </h2>
           </div>
         ))}
-
-        <Postform />
       </div>
     )
   }
