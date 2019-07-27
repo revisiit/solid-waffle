@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
-// import history from './history'
 import { withRouter } from 'react-router-dom'
+import { PostUser } from '../../helpers/api'
 
-import Home from '../home'
-import { PostUser } from '../../helpers/postform'
-
-class Postform extends Component {
+class SignUp extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       first_name: 'aravind',
       last_name: 'krishnan',
@@ -24,8 +20,6 @@ class Postform extends Component {
 
   submitHandler = event => {
     event.preventDefault()
-    const { history } = this.props
-    console.log(history)
     const { first_name, last_name, email, password, phone } = this.state
     const user = {
       first_name,
@@ -36,38 +30,19 @@ class Postform extends Component {
     }
 
     PostUser(user).then(res => {
-      const output = res.data.success
+      const { success } = res.data
 
-      console.log(output)
-      if ((status = 200 && output == true)) {
+      if ((status = 200 && success == true)) {
         console.log('reg success')
-        // console.log(props.history)
-        // this.props.history.push('/')
+        this.props.history.push('/')
       } else {
-        console.log('faile')
+        console.log('Failed', res.data)
       }
     })
   }
-  //   const response = await axios({
-  //     method: 'POST',
-  //     url: 'http://localhost:3000/api/v1/user',
-  //     data: user,
-  //   }).then(res => {
-  //     const output = res.data.success
-  //     // console.log(output)
-
-  //     if ((status = 200 && output == true)) {
-  //       console.log('reg success')
-  //     } else {
-  //       console.log('faile')
-  //     }
-  //   })
-
-  // console.log(response.body)
 
   render() {
     const { first_name, last_name, email, password, phone } = this.state
-
     return (
       <div>
         <form>
@@ -129,4 +104,4 @@ class Postform extends Component {
   }
 }
 
-export default Postform
+export default SignUp

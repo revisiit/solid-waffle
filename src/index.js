@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Login from './components/login'
+import Router from './components/router'
 
 const targetEl = document.getElementById('root')
-ReactDOM.render(<Login />, targetEl)
+ReactDOM.render(<Router />, targetEl)
