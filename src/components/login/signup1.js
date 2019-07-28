@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+//import history from './history'
 import { withRouter } from 'react-router-dom'
+
+import Home from '../home'
 import { PostUser } from '../../helpers/api'
 
-class SignUp extends Component {
+class Postform extends Component {
   constructor(props) {
     super(props)
-    //setiing initial state
+
     this.state = {
       first_name: 'aravind',
       last_name: 'krishnan',
@@ -16,12 +19,13 @@ class SignUp extends Component {
   }
 
   changeHandler = event => {
-    //getting name and value and changing the state
     this.setState({ [event.target.name]: event.target.value })
   }
 
   submitHandler = event => {
-    event.preventDefault() //stops thedefault action from changing ..eg: notsubmitting the form the moment it is clicked
+    event.preventDefault()
+    const { history } = this.props
+    console.log(history)
     const { first_name, last_name, email, password, phone } = this.state
     const user = {
       first_name,
@@ -32,19 +36,41 @@ class SignUp extends Component {
     }
 
     PostUser(user).then(res => {
-      const { success } = res.data //deconstructing success
+      const output = res.data.success
 
-      if ((status = 200 && success == true)) {
-        console.log('reg success')
-        this.props.history.push('/') //navigating to the home if condition is true
+      console.log(output)
+      if ((status = 200 && output == true)) {
+        console.log('reg success'),
+          // console.log(props.history)
+
+          this.props.history.push('/')
+
+        //
       } else {
-        console.log('Failed', res.data)
+        console.log('faile')
       }
     })
   }
+  //   const response = await axios({
+  //     method: 'POST',
+  //     url: 'http://localhost:3000/api/v1/user',
+  //     data: user,
+  //   }).then(res => {
+  //     const output = res.data.success
+  //     // console.log(output)
+
+  //     if ((status = 200 && output == true)) {
+  //       console.log('reg success')
+  //     } else {
+  //       console.log('faile')
+  //     }
+  //   })
+
+  // console.log(response.body)
 
   render() {
-    const { first_name, last_name, email, password, phone } = this.state //deconstructing all the input values
+    const { first_name, last_name, email, password, phone } = this.state
+
     return (
       <div>
         <form>
@@ -73,7 +99,7 @@ class SignUp extends Component {
               name="email"
               placeholder="email"
               value={email}
-              onChange={this.changeHandler} //changing the defalut values from input values
+              onChange={this.changeHandler}
             />
           </div>
           <div>
@@ -106,4 +132,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp
+export default withRouter(Postform)

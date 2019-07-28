@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { PostUser } from '../../helpers/api'
+import { PostCredentials } from '../../helpers/api'
 
-class SignUp extends Component {
+class LoginPage extends Component {
   constructor(props) {
     super(props)
     //setiing initial state
     this.state = {
-      first_name: 'aravind',
-      last_name: 'krishnan',
       email: 'abcde@gmail.com',
-      phone: '987654321',
       password: 'hbdfufenifnernfin',
     }
   }
@@ -22,16 +19,13 @@ class SignUp extends Component {
 
   submitHandler = event => {
     event.preventDefault() //stops thedefault action from changing ..eg: notsubmitting the form the moment it is clicked
-    const { first_name, last_name, email, password, phone } = this.state
+    const { email, password } = this.state
     const user = {
-      first_name,
-      last_name,
       email,
-      phone,
       password,
     }
 
-    PostUser(user).then(res => {
+    PostCredentials(user).then(res => {
       const { success } = res.data //deconstructing success
 
       if ((status = 200 && success == true)) {
@@ -44,29 +38,10 @@ class SignUp extends Component {
   }
 
   render() {
-    const { first_name, last_name, email, password, phone } = this.state //deconstructing all the input values
+    const { email, password } = this.state //deconstructing all the input values
     return (
       <div>
         <form>
-          <div>
-            <input
-              type="text"
-              name="first_name"
-              placeholder="firstname"
-              value={first_name}
-              onChange={this.changeHandler}
-            />
-          </div>
-
-          <div>
-            <input
-              type="text"
-              name="last_name"
-              placeholder="lastname"
-              value={last_name}
-              onChange={this.changeHandler}
-            />
-          </div>
           <div>
             <input
               type="email"
@@ -85,15 +60,6 @@ class SignUp extends Component {
               onChange={this.changeHandler}
             />
           </div>
-          <div>
-            <input
-              type="tel"
-              name="phone"
-              placeholder="phone"
-              value={phone}
-              onChange={this.changeHandler}
-            />
-          </div>
 
           <div>
             <button type="submit" onClick={this.submitHandler}>
@@ -106,4 +72,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp
+export default LoginPage
