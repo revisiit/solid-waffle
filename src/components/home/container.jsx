@@ -3,7 +3,7 @@ import Loader from '../common/loader'
 import { Link } from 'react-router-dom'
 import ErrorComponent from '../common/error'
 import { getAllPackage, getAllCategory } from '../../helpers/api'
-import Signup from '../login/signup1'
+import Signup from '../login/signup'
 import Login from '../login/loginpage'
 
 class Fetch extends React.Component {

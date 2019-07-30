@@ -26,9 +26,9 @@ class LoginPage extends Component {
     }
 
     PostCredentials(user).then(res => {
-      const { success } = res.data //deconstructing success
+      const { isLoggedIn } = res.data //deconstructing success
 
-      if ((status = 200 && success == true)) {
+      if ((status = 200 && isLoggedIn == true)) {
         console.log('reg success')
         this.props.history.push('/') //navigating to the home if condition is true
       } else {
