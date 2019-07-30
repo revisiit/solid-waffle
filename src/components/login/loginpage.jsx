@@ -30,8 +30,8 @@ class LoginPage extends Component {
 
       if ((status = 200 && isLoggedIn == true)) {
         console.log('reg success')
-        this.props.history.push('/') //navigating to the home if condition is true
         localStorage.setItem('userdetails', JSON.stringify(entity))
+        this.props.history.push('/') //navigating to the home if condition is true
       } else {
         console.log('Failed', res.data)
       }

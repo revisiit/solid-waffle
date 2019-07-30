@@ -39,6 +39,14 @@ class Fetch extends React.Component {
       .catch(error => this.setState({ error, isloading: false }))
   }
 
+  logoutpage = event => {
+    event.preventDefault()
+    const removeUser = localStorage.removeItem('userdetails')
+    this.setState({
+      user: null,
+    })
+  }
+
   render() {
     const { isloading, user, error } = this.state
     if (isloading) {
@@ -53,7 +61,12 @@ class Fetch extends React.Component {
     return (
       <div>
         {user ? (
-          `Welcome ${user.first_name}`
+          <div>
+            `Welcome {user.first_name}`
+            <button type="submit" onClick={this.logoutpage}>
+              LogOut
+            </button>
+          </div>
         ) : (
           <div>
             <Link to="/signup">Signup</Link>
