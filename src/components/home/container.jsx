@@ -5,6 +5,7 @@ import ErrorComponent from '../common/error'
 import { getAllPackage, getAllCategory } from '../../helpers/api'
 import Signup from '../login/signup'
 import Login from '../login/loginpage'
+import { UserGreeting } from './welcome'
 
 class Fetch extends React.Component {
   constructor() {
@@ -14,10 +15,15 @@ class Fetch extends React.Component {
       isloading: true,
       error: null,
       category: [],
+      user: null,
     }
   }
 
   componentDidMount() {
+    const user = localStorage.getItem('userdetails')
+    if (user) {
+      this.setState({ user: JSON.parse(user) })
+    }
     getAllPackage()
       .then(packagese => {
         this.setState({ pkg: packagese, isloading: false })
@@ -34,18 +40,26 @@ class Fetch extends React.Component {
   }
 
   render() {
-    if (this.state.isloading) {
+    const { isloading, user, error } = this.state
+    if (isloading) {
       return <Loader />
     }
-    if (this.state.error) {
+    if (error) {
       return <ErrorComponent />
     }
+
     const { pkg } = this.state
     const { category } = this.state
     return (
       <div>
-        <Link to="/signup">Signup</Link>
-        <Link to="/login">Login</Link>
+        {user ? (
+          `Welcome ${user.first_name}`
+        ) : (
+          <div>
+            <Link to="/signup">Signup</Link>
+            <Link to="/login">Login</Link>
+          </div>
+        )}
 
         <div>
           {pkg.map(pkg_item => (

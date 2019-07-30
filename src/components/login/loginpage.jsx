@@ -26,11 +26,12 @@ class LoginPage extends Component {
     }
 
     PostCredentials(user).then(res => {
-      const { isLoggedIn } = res.data //deconstructing success
+      const { isLoggedIn, entity } = res.data //deconstructing success
 
       if ((status = 200 && isLoggedIn == true)) {
         console.log('reg success')
         this.props.history.push('/') //navigating to the home if condition is true
+        localStorage.setItem('userdetails', JSON.stringify(entity))
       } else {
         console.log('Failed', res.data)
       }
