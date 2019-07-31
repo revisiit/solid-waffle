@@ -25,9 +25,9 @@ class Fetch extends React.Component {
       this.setState({ user: JSON.parse(user) })
     }
     getAllPackage()
-      .then(packagese => {
-        this.setState({ pkg: packagese, isloading: false })
-        console.log(packagese)
+      .then(packages => {
+        this.setState({ pkg: packages, isloading: false })
+        console.log(packages)
       })
       .catch(error => this.setState({ error, isloading: false }))
 
@@ -63,7 +63,7 @@ class Fetch extends React.Component {
         {user ? (
           <div>
             `Welcome {user.first_name}`
-            <button type="submit" onClick={this.logoutpage}>
+            <button type="Login" onClick={this.logoutpage}>
               LogOut
             </button>
           </div>

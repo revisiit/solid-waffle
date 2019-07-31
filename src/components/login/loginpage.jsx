@@ -7,8 +7,8 @@ class LoginPage extends Component {
     super(props)
     //setiing initial state
     this.state = {
-      email: 'abcde@gmail.com',
-      password: 'hbdfufenifnernfin',
+      email: '',
+      password: '',
     }
   }
 
@@ -25,7 +25,7 @@ class LoginPage extends Component {
       password,
     }
 
-    PostCredentials(user).then(res => {
+    postCredentials(user).then(res => {
       const { isLoggedIn, entity } = res.data //deconstructing success
 
       if ((status = 200 && isLoggedIn == true)) {

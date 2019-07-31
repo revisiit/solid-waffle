@@ -7,11 +7,11 @@ class SignUp extends Component {
     super(props)
     //setiing initial state
     this.state = {
-      first_name: 'aravind',
-      last_name: 'krishnan',
-      email: 'abcde@gmail.com',
-      phone: '987654321',
-      password: 'hbdfufenifnernfin',
+      first_name: '',
+      last_name: '',
+      email: '',
+      phone: '',
+      password: '',
     }
   }
 
@@ -31,11 +31,12 @@ class SignUp extends Component {
       password,
     }
 
-    PostUser(user).then(res => {
-      const { success } = res.data //deconstructing success
+    postUser(user).then(res => {
+      const { entity, success } = res.data //deconstructing success
 
       if ((status = 200 && success == true)) {
         console.log('reg success')
+        localStorage.setItem('userdetails', JSON.stringify(entity))
         this.props.history.push('/') //navigating to the home if condition is true
       } else {
         console.log('Failed', res.data)

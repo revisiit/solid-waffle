@@ -17,7 +17,7 @@ export function getCategoryId(id) {
   return fetch(`${BASE_URL}/category/${id}`).then(res => res.json())
 }
 
-export function PostUser(user) {
+export function postUser(user) {
   return axios({
     method: 'POST',
     url: `${BASE_URL}/user/register`,
@@ -25,7 +25,7 @@ export function PostUser(user) {
   })
 }
 
-export function PostCredentials(user) {
+export function postCredentials(user) {
   return axios({
     method: 'POST',
     url: `${BASE_URL}/user/login`,
