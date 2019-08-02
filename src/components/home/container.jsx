@@ -3,6 +3,9 @@ import Loader from '../common/loader'
 import { Link } from 'react-router-dom'
 import ErrorComponent from '../common/error'
 import { getAllPackage, getAllCategory } from '../../helpers/api'
+import Signup from '../login/signup'
+import Login from '../login/loginpage'
+import { UserGreeting } from './welcome'
 
 class Fetch extends React.Component {
   constructor() {
@@ -12,14 +15,19 @@ class Fetch extends React.Component {
       isloading: true,
       error: null,
       category: [],
+      user: null,
     }
   }
 
   componentDidMount() {
+    const user = localStorage.getItem('userdetails')
+    if (user) {
+      this.setState({ user: JSON.parse(user) })
+    }
     getAllPackage()
-      .then(pkg_output => {
-        this.setState({ pkg: pkg_output, isloading: false })
-        console.log(pkg_output)
+      .then(packages => {
+        this.setState({ pkg: packages, isloading: false })
+        console.log(packages)
       })
       .catch(error => this.setState({ error, isloading: false }))
 
@@ -31,36 +39,62 @@ class Fetch extends React.Component {
       .catch(error => this.setState({ error, isloading: false }))
   }
 
+  logoutpage = event => {
+    event.preventDefault()
+    const removeUser = localStorage.removeItem('userdetails')
+    this.setState({
+      user: null,
+    })
+  }
+
   render() {
-    if (this.state.isloading) {
+    const { isloading, user, error } = this.state
+    if (isloading) {
       return <Loader />
     }
-    if (this.state.error) {
+    if (error) {
       return <ErrorComponent />
     }
+
     const { pkg } = this.state
     const { category } = this.state
     return (
       <div>
-        {pkg.map(pkg_item => (
-          <div key={pkg_item._id}>
-            {' '}
-            <h2>
-              <Link to={`/package/${pkg_item._id}`}>{pkg_item.name}</Link>
-            </h2>
-            <h3>{pkg_item.description}</h3>
+        {user ? (
+          <div>
+            `Welcome {user.first_name}`
+            <button type="Login" onClick={this.logoutpage}>
+              LogOut
+            </button>
           </div>
-        ))}
-        {category.map(category_item => (
-          <div key={category_item._id}>
-            {' '}
-            <h2>
-              <Link to={`/category/${category_item._id}`}>
-                {category_item.name}
-              </Link>
-            </h2>
+        ) : (
+          <div>
+            <Link to="/signup">Signup</Link>
+            <Link to="/login">Login</Link>
           </div>
-        ))}
+        )}
+
+        <div>
+          {pkg.map(pkg_item => (
+            <div key={pkg_item._id}>
+              {' '}
+              <h2>
+                <Link to={`/package/${pkg_item._id}`}>{pkg_item.name}</Link>
+              </h2>
+              <h3>{pkg_item.description}</h3>
+            </div>
+          ))}
+          {category.map(category_item => (
+            <div key={category_item._id}>
+              {' '}
+              <h2>
+                <Link to={`/category/${category_item._id}`}>
+                  {category_item.name}
+                </Link>
+              </h2>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
