@@ -1,6 +1,8 @@
 //if is loggedin ==true: booking will happen else link to signup page
 //here method is post : userdetails and packagedetails
 import React, { Component } from 'react'
+import { postBookingDetails } from '../../helpers/api'
+import { withRouter } from 'react-router-dom'
 
 class BookingPage extends Component {
   constructor(props) {
@@ -21,15 +23,32 @@ class BookingPage extends Component {
       userId: userid._id,
       packageId: packageid.id,
     })
+    if (userdet == undefined || userdet == null) {
+      this.props.history.push('/login')
+    }
   }
-  render() {
+
+  submitHandler = event => {
+    event.preventDefault()
     const { userId, packageId } = this.state
     const bookingDetails = {
       userId,
       packageId,
     }
+    console.log('hi')
+    postBookingDetails(bookingDetails).then(res => {
+      console.log(res.data)
+    })
+  }
 
-    return <div>hello</div>
+  render() {
+    return (
+      <div>
+        <button type="button" onClick={this.submitHandler}>
+          Book Now
+        </button>
+      </div>
+    )
   }
 }
 

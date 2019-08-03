@@ -33,10 +33,10 @@ export function postCredentials(user) {
   })
 }
 
-export function postBookingDetails() {
+export function postBookingDetails(bookingDetails) {
   return axios({
     method: 'POST',
-    usrl: `${BASE_URL}/book/`,
+    url: `${BASE_URL}/book`,
     data: bookingDetails,
   })
 }
