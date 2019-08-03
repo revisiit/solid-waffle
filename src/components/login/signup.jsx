@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { PostUser } from '../../helpers/api'
+import { postUser } from '../../helpers/api'
 
 class SignUp extends Component {
   constructor(props) {

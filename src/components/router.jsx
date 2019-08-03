@@ -5,6 +5,7 @@ import Signup from './login/signup'
 import Login from './login/loginpage'
 import Package from './package'
 import Category from './category'
+import Booking from './booking/book'
 
 class Routing extends React.Component {
   render() {
@@ -14,7 +15,8 @@ class Routing extends React.Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
-          <Route path="/package/:id/" component={Package} />
+          <Route path="/booking/:id" component={Booking} />
+          <Route path="/package/:slug/" component={Package} />
           <Route path="/category/:id/" component={Category} />
 
           {/* TODO: <Route component={Nf} /> */}

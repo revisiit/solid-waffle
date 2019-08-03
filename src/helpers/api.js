@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://salty-thicket-13140.herokuapp.com/api/v1'
+const BASE_URL = 'http://127.0.0.1:3000/api/v1/'
 
 export function getAllPackage() {
   return fetch(`${BASE_URL}/package/all`).then(res => res.json())
@@ -30,5 +30,13 @@ export function postCredentials(user) {
     method: 'POST',
     url: `${BASE_URL}/user/login`,
     data: user,
+  })
+}
+
+export function postBookingDetails() {
+  return axios({
+    method: 'POST',
+    usrl: `${BASE_URL}/book/`,
+    data: bookingDetails,
   })
 }

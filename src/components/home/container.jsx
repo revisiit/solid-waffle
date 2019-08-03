@@ -76,10 +76,10 @@ class Fetch extends React.Component {
 
         <div>
           {pkg.map(pkg_item => (
-            <div key={pkg_item._id}>
+            <div key={pkg_item.slug}>
               {' '}
               <h2>
-                <Link to={`/package/${pkg_item._id}`}>{pkg_item.name}</Link>
+                <Link to={`/package/${pkg_item.slug}`}>{pkg_item.name}</Link>
               </h2>
               <h3>{pkg_item.description}</h3>
             </div>

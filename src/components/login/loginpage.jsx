@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { PostCredentials } from '../../helpers/api'
+import { postCredentials } from '../../helpers/api'
 
 class LoginPage extends Component {
   constructor(props) {
