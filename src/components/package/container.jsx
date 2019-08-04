@@ -2,6 +2,8 @@ import React from 'react'
 import Loader from '../common/loader'
 import Error from '../common/error'
 import { getPackageId } from '../../helpers/api'
+import { Link } from 'react-router-dom'
+import { postCredentials } from '../../helpers/api'
 class Package extends React.Component {
   constructor(props) {
     super(props)
@@ -13,9 +15,10 @@ class Package extends React.Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id
+    const slug = this.props.match.params.slug
+    console.log(slug)
 
-    getPackageId(id)
+    getPackageId(slug)
       .then(output => {
         this.setState({ pkg: output, isloading: false })
         console.log(output)
@@ -35,10 +38,8 @@ class Package extends React.Component {
       <div>
         <h1>Name:{pkg.name}</h1>
         <h2>Description:{pkg.description}</h2>
-        <h3>Duration:{pkg.duration}</h3>
-        {pkg.conditions.map(item => (
-          <h4>condition:{item}</h4>
-        ))}
+        {/* booking for user */}
+        <Link to={`/booking/${pkg._id}`}>Book Now</Link>
       </div>
     )
   }
